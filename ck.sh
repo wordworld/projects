@@ -1,11 +1,13 @@
-#!/bin/bash
-. ./repo.sh
+#!/usr/bin/bash
+if [ -f "zsl.sh" ];then
+	bash zsl.sh setup_finclude_cmd
+fi
+if [ $? -ne 0 ];then exit; fi
 
-repo_dir=("${common[1]}" "${zip[1]}" "${fvimSuits[1]}" "${repo_mgr[1]}")
-cd ..
+`finclude $0 repo.sh`
 
 i=0
 while [ $i -lt ${#repo_dir[@]} ];do
-	cd ${repo_dir[(i)]} && echo -e "----------\n ${repo_dir[(i)]}\n----------" && git status && cd ..
+	cd ${repo_dir[(i)]} && echo -e "----------\n ${repo_name[(i)]}\n----------" && git status && cd ..
 	((i++))
 done

@@ -526,6 +526,12 @@ while [ $# -gt 0 ];do
 	fi
 done
 
+# 第一个参数是链接
+link=`readlink ${inc_para[0]}`
+if [ "" != "$link" ];then
+	inc_para[0]=$link
+fi
+
 case ${#inc_para[@]} in
 	0) # 无参数，命令写错
 		$TEST echo $ERR_CMD
