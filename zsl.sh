@@ -529,7 +529,11 @@ done
 # 第一个参数是链接
 link=`readlink ${inc_para[0]}`
 if [ "" != "$link" ];then
-	inc_para[0]=$link
+	if [ "${link:0:1}" = '/' ];then
+		inc_para[0]=$link
+	else
+		inc_para[0]=${inc_para[0]%/*}$link
+	fi
 fi
 
 case ${#inc_para[@]} in
