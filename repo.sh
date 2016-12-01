@@ -11,24 +11,21 @@ cdir=`GetFullPath $0`
 cdir=${cdir%/*}
 basedir=$cdir/..
 
+repos=("common" "zip" "fvimSuits" "repo_mgr" "fstoneos")
+
 function AddRepo()
 {
-	repo_name[${#repo_name[@]}]=$1
-	repo_dir[${#repo_dir[@]}]=$2
-	repo_url[${#repo_url[@]}]=$3
-
+	local name=$1
+	local mygit="https://github.com/wordworld"
+	repo_name[${#repo_name[@]}]="$name"
+	repo_dir[${#repo_dir[@]}]="$basedir/$name"
+	repo_url[${#repo_url[@]}]="$mygit/$name"
 }
 
-mygit="https://github.com/wordworld"
+i=0
+while [ $i -lt ${#repos[@]} ];do
+	AddRepo ${repos[(i)]}
+	((i++))
+done
 
-common=("common" "$basedir/common" "$mygit/common")
-AddRepo ${common[@]}
 
-zip=("zip" "$basedir/zip" "$mygit/zip")
-AddRepo ${zip[@]}
-
-fvimSuits=("fvimSuits" "$basedir/fvimSuits" "$mygit/fvimSuits")
-AddRepo ${fvimSuits[@]}
-
-repo_mgr=("repo_mgr" "$basedir/repo_mgr" "$mygit/repo_mgr")
-AddRepo ${repo_mgr[@]}
