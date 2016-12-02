@@ -186,12 +186,11 @@ function FindReplaceLine()
 	replace=$3
 	lineContent=`grep -n "$pattern" "$file"`
 	if [ "$lineContent" ];then
-		lineNum=${lineContent%%:*}
+		local lineNum=${lineContent%%:*}
 		sed -i $lineNum"c $replace" $file
-		# echo $lineNum:$file
+		echo $lineNum:$file
 	# else
 		# lineNum=`sed -n '$=' $file` 	# 最大行号
-		# echo $lineNum
 		# sed -i $lineNum"a $replace" $file
 	fi
 }
