@@ -11,7 +11,7 @@ cdir=`GetFullPath $0`
 cdir=${cdir%/*}
 basedir=$cdir/..
 
-repos=("common" "zip" "fvimSuits" "repo_mgr" "fstoneos")
+repos=("common" "zip" "fvimSuits" "repo_mgr" "fstoneos" "CmdMail")
 
 function AddRepo()
 {
@@ -22,10 +22,6 @@ function AddRepo()
 	repo_url[${#repo_url[@]}]="$mygit/$name"
 }
 
-i=0
-while [ $i -lt ${#repos[@]} ];do
-	AddRepo ${repos[(i)]}
-	((i++))
+for rep in ${repos[@]}; do
+	AddRepo $rep
 done
-
-
