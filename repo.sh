@@ -11,7 +11,7 @@ cdir=`GetFullPath $0`
 cdir=${cdir%/*}
 basedir=$cdir/..
 
-repos=("common" "zip" "fvimSuits" "repo_mgr" "fstoneos" "CmdMail")
+repos=("common" "zip" "fvimSuits" "repo_mgr" "fstoneos" "CmdMail" "lib_demo")
 
 function AddRepo()
 {
